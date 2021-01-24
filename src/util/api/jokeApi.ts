@@ -40,10 +40,17 @@ const jokeAPIRequest = async (url: string, params: any, method: string, body?: a
   }
 };
 
-const getJokes = (category, amount?) => {
+const getJokes = (category, searchValue?, amount?) => {
+  let params;
   const jokeAmount = amount ? amount : 10;
 
-  return jokeAPIRequest(`/joke/${category}`, { amount: jokeAmount }, 'GET');
+  if (searchValue && searchValue !== '') {
+    params = { amount: jokeAmount, contains: searchValue };
+  } else {
+    params = { amount: jokeAmount };
+  }
+
+  return jokeAPIRequest(`/joke/${category}`, params, 'GET');
 };
 
 const getCategories = () => {

@@ -3,6 +3,7 @@ import { createStore } from 'redux';
 const initialState = {
   categories: [],
   category: 'Any',
+  searchValue: '',
 };
 
 const reducer = (state = initialState, action: { type: string; payload: any }) => {
@@ -16,6 +17,9 @@ const reducer = (state = initialState, action: { type: string; payload: any }) =
     return Object.assign({}, state, {
       category: action.payload,
     });
+  }
+  if (action.type === 'SET_SEARCH_VALUE') {
+    return Object.assign({}, state, { searchValue: action.payload });
   }
   return state;
 };

@@ -16,8 +16,8 @@ const App: React.FC<unknown> = (props) => {
   }, []);
 
   React.useEffect(() => {
-    jokeApi.getJokes(props.category).then((response) => {
-      console.log(response);
+    const searchValue = props.searchValue;
+    jokeApi.getJokes(props.category, searchValue).then((response) => {
       const temporaryJokes = [];
 
       response.jokes.forEach((element) => {
@@ -32,10 +32,9 @@ const App: React.FC<unknown> = (props) => {
           });
         }
       });
-      console.log(temporaryJokes);
       setJokes(temporaryJokes);
     });
-  }, [props.category]);
+  }, [props.category, props.searchValue]);
 
   return (
     <div className="container-fluid">
@@ -46,7 +45,7 @@ const App: React.FC<unknown> = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { category: state.category };
+  return { category: state.category, searchValue: state.searchValue };
 };
 
 const mapDispatchToProps = (dispatch) => {
