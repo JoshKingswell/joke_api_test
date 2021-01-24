@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/JoshKingswell/joke_api_test#readme",
   "dependencies": {
-    "axios": "^0.21.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },

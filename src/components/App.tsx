@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { getJokes } from '../util/api/jokeApi';
+import jokeApi from '../util/api/jokeApi';
 
 const App: React.FC<unknown> = () => {
   React.useEffect(() => {
-    getJokes();
+    jokeApi.getJokes();
   }, []);
 
   return <div>Hello world</div>;

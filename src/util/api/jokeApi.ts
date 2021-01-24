@@ -1,30 +1,46 @@
-import axios, { AxiosRequestConfig } from 'axios';
+const jokeApiConfig = {
+  url: 'https://v2.jokeapi.dev',
+};
 
-const jokeApiInstance = axios.create({
-  baseURL: 'https://v2.jokeapi.dev/',
-  params: {
-    'safe-mode': '',
-  },
-});
+const jokeAPIRequest = async (url: string, params: any, method: string, body?: any) => {
+  try {
+    const getURLParamString = () => {
+      let urlParamString = '';
+      for (const [key, value] of Object.entries(params)) {
+        console.log(key + ': ' + value);
+        urlParamString += `&${key}=${value}`;
+      }
+      return urlParamString;
+    };
 
-const apiRequest = (method: AxiosRequestConfig['method'], url: string, params: any) => {
-  return jokeApiInstance
-    .request({
+    const response = await fetch(`${jokeApiConfig.url}${url}?safe-mode${getURLParamString()}`, {
       method,
-      url,
-      params: params,
-    })
-    .then((response) => console.log(response))
-    .catch((error) => console.error(error));
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    const data = response.json();
+    return response.ok
+      ? data
+      : Promise.reject({
+          ...data,
+          statusCode: response.status,
+        });
+  } catch (error) {
+    throw new Error('This is an error' + error);
+  }
 };
 
 const getJokes = (amount?, category?) => {
   const jokeAmount = amount ? amount : 10;
   const jokeCategory = category ? category : 'Any';
 
-  return apiRequest('GET', `/joke/${jokeCategory}`, { amount: jokeAmount });
+  return jokeAPIRequest(`/joke/${jokeCategory}`, { amount: jokeAmount }, 'GET');
 };
 
-export = {
+const jokeApi = {
   getJokes,
 };
+
+export default jokeApi;
