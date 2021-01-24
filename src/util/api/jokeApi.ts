@@ -2,18 +2,26 @@ const jokeApiConfig = {
   url: 'https://v2.jokeapi.dev',
 };
 
-const jokeAPIRequest = async (url: string, params: any, method: string, body?: any) => {
+const jokeAPIRequest = async (url: string, params: any, method: string, body?: any, dryRunEnabled?: boolean) => {
   try {
     const getURLParamString = () => {
-      let urlParamString = '';
-      for (const [key, value] of Object.entries(params)) {
-        console.log(key + ': ' + value);
-        urlParamString += `&${key}=${value}`;
+      let urlParamString = '?';
+      if (url.includes('joke')) {
+        urlParamString += 'safe-mode';
       }
-      return urlParamString;
+      if (dryRunEnabled) {
+        urlParamString += '&dry-run';
+      }
+      if (Object.keys(params).length !== 0) {
+        for (const [key, value] of Object.entries(params)) {
+          console.log(key + ': ' + value);
+          urlParamString += `&${key}=${value}`;
+        }
+      }
+      return urlParamString === '?' ? '' : urlParamString;
     };
 
-    const response = await fetch(`${jokeApiConfig.url}${url}?safe-mode${getURLParamString()}`, {
+    const response = await fetch(`${jokeApiConfig.url}${url}${getURLParamString()}`, {
       method,
       headers: {
         'Content-Type': 'application/json',
@@ -32,15 +40,19 @@ const jokeAPIRequest = async (url: string, params: any, method: string, body?: a
   }
 };
 
-const getJokes = (amount?, category?) => {
+const getJokes = (category, amount?) => {
   const jokeAmount = amount ? amount : 10;
-  const jokeCategory = category ? category : 'Any';
 
-  return jokeAPIRequest(`/joke/${jokeCategory}`, { amount: jokeAmount }, 'GET');
+  return jokeAPIRequest(`/joke/${category}`, { amount: jokeAmount }, 'GET');
+};
+
+const getCategories = () => {
+  return jokeAPIRequest(`/categories`, {}, 'GET');
 };
 
 const jokeApi = {
   getJokes,
+  getCategories,
 };
 
 export default jokeApi;
