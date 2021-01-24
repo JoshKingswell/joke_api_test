@@ -6,7 +6,7 @@ const Header = (props) => {
   return (
     <div>
       <SearchBar />
-      <CategoryList />;
+      <CategoryList />
     </div>
   );
 };
