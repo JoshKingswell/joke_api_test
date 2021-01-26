@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 interface ISearchBarProps {
   searchValue: string;
-  dispatch: ({ type, payload }: { type: string; payload: any }) => void;
+  dispatch: ({ type, payload }: { type: string; payload: string }) => void;
 }
 
 const SearchBar: React.FC<ISearchBarProps> = (props: ISearchBarProps) => {

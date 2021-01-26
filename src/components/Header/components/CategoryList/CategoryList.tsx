@@ -2,7 +2,13 @@ import * as React from 'react';
 import Checkbox from '../../../common/Checkbox';
 import { connect } from 'react-redux';
 
-const CategoryList: React.FC<any> = (props: any) => {
+interface ICategoryListProps {
+  category: string;
+  categories: string[];
+  dispatch: ({ type, payload }: { type: string; payload: string }) => void;
+}
+
+const CategoryList: React.FC<ICategoryListProps> = (props: ICategoryListProps) => {
   return (
     <div className="category-list flex-row">
       {props.categories.map((element, index) => {

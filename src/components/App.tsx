@@ -10,7 +10,7 @@ import '../scss/styles.scss';
 interface IAppProps {
   searchValue: string;
   category: string;
-  dispatch: any;
+  dispatch: ({ type, payload }: { type: string; payload: string[] }) => void;
 }
 
 const App: React.FC<IAppProps> = (props: IAppProps) => {
