@@ -27,7 +27,11 @@ const App: React.FC<IAppProps> = (props: IAppProps) => {
       await jokeApi
         .getCategories()
         .then((response) => {
-          const categories = response.categories;
+          const categories: string[] = response.categories;
+          const indexOfDark = categories.indexOf('Dark', 0);
+          if (indexOfDark > -1) {
+            categories.splice(indexOfDark, 1);
+          }
           props.dispatch({ type: 'SET_INITIAL_CATEGORIES', payload: categories });
           setInitialLoadDone(true);
         })
