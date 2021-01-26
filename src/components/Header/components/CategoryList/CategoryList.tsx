@@ -3,7 +3,6 @@ import Checkbox from '../../../common/Checkbox';
 import { connect } from 'react-redux';
 
 const CategoryList: React.FC<any> = (props: any) => {
-  console.log(props.category);
   return (
     <div className="category-list flex-row">
       {props.categories.map((element, index) => {

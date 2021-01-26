@@ -13,7 +13,6 @@ const reducer = (state = initialState, action: { type: string; payload: any }) =
     });
   }
   if (action.type === 'SET_CATEGORY') {
-    console.log(action.payload);
     return Object.assign({}, state, {
       category: action.payload,
     });

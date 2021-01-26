@@ -14,8 +14,6 @@ interface IJokesProps {
 
 const Jokes: React.FC<IJokesProps> = (props: IJokesProps) => {
   const renderJokes = () => {
-    console.log('Rendering jokes');
-    console.log(props.jokes);
     if (!props.noJoke.noJokes) {
       return props.jokes.map((joke, index) => {
         return <JokeTile key={index} category={joke.category} type={joke.type} body={joke.joke} />;

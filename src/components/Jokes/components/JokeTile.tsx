@@ -7,7 +7,6 @@ interface IJokeTileProps {
 }
 
 const JokeTile: React.FC<IJokeTileProps> = (props: IJokeTileProps) => {
-  console.log('JOKE');
   const returnJokeBody = () => {
     if (typeof props.body === 'string') {
       return <p>{props.body}</p>;

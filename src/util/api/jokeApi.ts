@@ -14,7 +14,6 @@ const jokeAPIRequest = async (url: string, params: any, method: string, body?: a
       }
       if (Object.keys(params).length !== 0) {
         for (const [key, value] of Object.entries(params)) {
-          console.log(key + ': ' + value);
           urlParamString += `&${key}=${value}`;
         }
       }
