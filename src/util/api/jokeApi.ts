@@ -40,7 +40,7 @@ const jokeAPIRequest = async (url: string, params: any, method: string, body?: a
   }
 };
 
-const getJokes = (category, searchValue?, amount?) => {
+const getJokes = (category: string, searchValue?: string, amount?: number): Promise<any> => {
   let params;
   const jokeAmount = amount ? amount : 10;
 
@@ -53,7 +53,7 @@ const getJokes = (category, searchValue?, amount?) => {
   return jokeAPIRequest(`/joke/${category}`, params, 'GET');
 };
 
-const getCategories = () => {
+const getCategories = (): Promise<any> => {
   return jokeAPIRequest(`/categories`, {}, 'GET');
 };
 

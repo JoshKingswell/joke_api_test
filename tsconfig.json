@@ -26,5 +26,5 @@
   },
   "include": ["src", ".eslintrc.js", "webpack.config.js", ".prettierrc.js"],
   "exclude": ["node_modules"],
-  "files": ["src/index.ts"]
+  "files": ["src/index.tsx"]
 }

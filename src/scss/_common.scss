@@ -1,0 +1,24 @@
+.flex {
+  &-row {
+    @include flex(row);
+    &-wrap {
+      @include flex(row, wrap);
+      &-reverse {
+        @include flex(row, wrap-reverse);
+      }
+    }
+  }
+  &-column {
+    @include flex(column);
+    &-wrap {
+      @include flex(column, wrap);
+      &-reverse {
+        @include flex(column, wrap-reverse);
+      }
+    }
+  }
+}
+
+.relative {
+  position: relative;
+}

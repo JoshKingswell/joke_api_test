@@ -1,0 +1,27 @@
+.joke-tile {
+  padding: 1em;
+  margin: 0.5em;
+  width: 50%;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+  &--header {
+    justify-content: space-evenly;
+    background-color: #777;
+    color: #fff;
+    padding: 0.5em;
+    h3 {
+      width: 50%;
+      text-align: center;
+    }
+    h3:nth-child(2) {
+      text-transform: capitalize;
+    }
+  }
+
+  &--content {
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 0.5em 2em;
+  }
+}

@@ -1,9 +1,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-const SearchBar = (props) => {
+interface ISearchBarProps {
+  searchValue: string;
+  dispatch: ({ type, payload }: { type: string; payload: any }) => void;
+}
+
+const SearchBar: React.FC<ISearchBarProps> = (props: ISearchBarProps) => {
   return (
-    <label>
+    <label className="searchbar">
       Search{' '}
       <input
         type="text"

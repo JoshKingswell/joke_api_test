@@ -8,7 +8,7 @@ interface ICheckBoxProps {
 
 const Checkbox: React.FC<ICheckBoxProps> = (props: ICheckBoxProps) => {
   return (
-    <label>
+    <label className="checkbox-container flex-row-wrap">
       {props.category}
       <input type="checkbox" checked={props.checked} onChange={() => props.onChange(props.category)} />
     </label>
