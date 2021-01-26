@@ -2,6 +2,22 @@ const jokeApiConfig = {
   url: 'https://v2.jokeapi.dev',
 };
 
+interface ISubmitPayload {
+  formatVersion: number;
+  category: string;
+  type: string;
+  joke: string;
+  flags: {
+    nsfw: boolean;
+    religious: boolean;
+    political: boolean;
+    racist: boolean;
+    sexist: boolean;
+    explicit: boolean;
+  };
+  lang: string;
+}
+
 const jokeAPIRequest = async (url: string, params: any, method: string, body?: any, dryRunEnabled?: boolean) => {
   try {
     const getURLParamString = () => {
@@ -56,9 +72,14 @@ const getCategories = (): Promise<any> => {
   return jokeAPIRequest(`/categories`, {}, 'GET');
 };
 
+const submitJoke = (body: ISubmitPayload): Promise<any> => {
+  return jokeAPIRequest(`/submit`, {}, 'POST', body, true);
+};
+
 const jokeApi = {
   getJokes,
   getCategories,
+  submitJoke,
 };
 
 export default jokeApi;
