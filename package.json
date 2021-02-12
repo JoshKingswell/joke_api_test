@@ -4,7 +4,7 @@
   "description": "Messing around with the joke api + react + typescript",
   "main": "public/index.js",
   "scripts": {
-    "build": "webpack --mode -production",
+    "build": "webpack --mode production",
     "dev": "webpack serve --mode development"
   },
   "repository": {
